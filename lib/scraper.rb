@@ -24,7 +24,7 @@ class Scraper
     websites = []
     indeces = [1, 3, 5]
     indeces.each_with_index do |num, i|
-      if info[num]
+      if info[num] != nil
         websites[i] = []
         websites[i] << info[num].attribute("href").value
         websites[i] << info[num].attribute("href").value.delete_prefix("https://").delete_prefix("www.").split(".")
@@ -39,7 +39,7 @@ class Scraper
         end
       end
     end
-    if info[7]
+    if info[7] != nil
       profile[:blog] = info[7].attribute("href").value
     end
     profile[:profile_quote] = page.css("div.profile-quote").text
